@@ -3,26 +3,32 @@
 close all;
 clear all;
 %%
-dim_x_flasca= 55; %mm
-dim_y_flasca= 55; %mm
-collimatore= 19; %mm
 
-zero_x= 16.847; %mm
-zero_y= 126.85; %mm
+dim_x_flasca = 55; %mm
+dim_y_flasca = 55; %mm
+collimatore = 19; %mm
+
+zero_x = 16.847; %mm
+zero_y = 126.85; %mm
+
+% Cosa vuol dire questo? perch? ridefinisci la variabile zero_y  in questo
+% modo? Che senso aveva definirlo prima?
 zero_y= 126.85+collimatore;
-bordo_tra_due_flasche= 16; %mm:
-dimensione_maschera=500; %mm
+
+bordo_tra_due_flasche = 16; %mm:
+dimensione_maschera = 500; %mm
 
 
-numero_flasche_orizzontali=5;
-numero_fasche_verticali=1;
+numero_flasche_orizzontali = 5;
+numero_fasche_verticali = 1;
 numero_bordi_centrali_tra_due_flasche=numero_flasche_orizzontali-1;
+
 %%
 Step_per_flasca_x=ceil(dim_x_flasca/collimatore);
 Step_per_flasca_y=ceil(dim_x_flasca/collimatore);
 
 %%
-% Creo il vettore delle X => cioè la prima serpentina in orizzontale: 
+% Creo il vettore delle X => cio? la prima serpentina in orizzontale: 
 % a partire dal punto zero la x cresce e decresce un numero n di volte dove 
 % n dipende dall'altezza della flasca
 %%
@@ -45,7 +51,7 @@ end
      X_all_neg = cat(1,X_positiva{:}); 
 
 %%
-%%% Adesso creo il vettore delle Y => cioè la prima serpentina: a partire dal punto
+%%% Adesso creo il vettore delle Y => cio? la prima serpentina: a partire dal punto
 %%% zero la y decresce un numero n di volte dove n dipende dall'altezza della flasca
 
   for i=1 :Step_per_flasca_x+1;
@@ -71,15 +77,15 @@ primo = cell(Step_per_flasca_y,1);
 secondo = cell(Step_per_flasca_y,1);
 
 for i=1:Step_per_flasca_y;
-    if mod(i,2)==0 %% se è pari
+    if mod(i,2)==0 %% se ? pari
        tot{i,1}=[X_negativa{i},Y_decrescente{i}];
-    else %% se è dispari
+    else %% se ? dispari
        tot{i,1}=[X_positiva{i},Y_decrescente{i}];
     end
    
 end
 %%
-%%% Adesso devo rifare tuttper n volte dove n è il numero di flasche lungo x
+%%% Adesso devo rifare tuttper n volte dove n ? il numero di flasche lungo x
 %%% quindi uso l'idice k
     k=k+1;
     zero_x=zero_x+collimatore+dim_x_flasca+bordo_tra_due_flasche;
@@ -89,7 +95,7 @@ end
 end
 %%
  tutte_flasche_prima_riga=cell2mat([tutto{:}]);
- % tutte_flasche_prima_riga è una matrice non un vettore 2x1 e con il 
+ % tutte_flasche_prima_riga ? una matrice non un vettore 2x1 e con il 
  % comando reshape non vengono riorganizzate nella maniera giusta
  % quindi faccio un ciclo for per dividere le colonne che riguardano lo
  % spsotamento lungo x da quelle che riguardano lo spostamento lungo y
@@ -103,7 +109,7 @@ end
           seleziono_colonne_dispari(:,i) = tutte_flasche_prima_riga(:,i) 
        end
  end
- %adesso però ho delle matrici con delle colonne di zeri quindi per
+ %adesso per? ho delle matrici con delle colonne di zeri quindi per
  %eliminarle uso il seguente comando:
  
  seleziono_colonne_pari(:,1:2:end)=[] %Rimangono le colonne pari
