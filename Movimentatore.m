@@ -21,7 +21,7 @@ dimensione_maschera = 500; %mm
 
 numero_flasche_orizzontali = 5;
 numero_fasche_verticali = 1;
-numero_bordi_centrali_tra_due_flasche=numero_flasche_orizzontali-1;
+numero_bordi_centrali_trIa_due_flasche=numero_flasche_orizzontali-1;
 
 %%
 Step_per_flasca_x=ceil(dim_x_flasca/collimatore);
@@ -46,7 +46,6 @@ for i=1:Step_per_flasca_y,
      X_positiva{i} = X_pos ;
      X_negativa{i} = X_neg ;
 end
-
      X_all_pos = cat(1,X_positiva{:});
      X_all_neg = cat(1,X_positiva{:}); 
 
